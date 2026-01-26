@@ -11,15 +11,15 @@
  * @return {TreeNode}
  */
 var sortedArrayToBST = function(nums) {
-  const convert = (low, high) => { 
-    if (low > high) { 
-        return null; 
+    function buildTree(left,right) { 
+        if(left > right) { 
+         return null;   
+        }
+        const mid = Math.floor((left + right)/2); 
+        const node = new TreeNode(nums[mid]); 
+        node.left = buildTree(left, mid-1); 
+        node.right = buildTree(mid+1, right); 
+        return node;
     }
-    const mid = Math.floor((low+high)/2);
-    const root = new TreeNode(nums[mid]); 
-    root.left = convert(low, mid-1); 
-    root.right = convert(mid + 1, high);
-    return root; 
-  }  ; 
-  return convert(0, nums.length - 1);
+    return buildTree(0, nums.length-1);
 };
