@@ -3,21 +3,19 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-  const triangle = []; 
-  for (let i = 0; i < numRows; i++) { 
-    const currentRow = []; 
-    if (i === 0) { 
-        currentRow.push(1); 
-    } else { 
-        const previousRow = triangle[i-1]; 
-        currentRow.push(1); 
-        for (let j = 1; j < previousRow.length; j++) {
-                const sum = previousRow[j - 1] + previousRow[j];
-                currentRow.push(sum);
-            }
-            currentRow.push(1); 
-    }
-    triangle.push(currentRow); 
-  }  
-  return triangle; 
+    const result = []; 
+    for(let i=0; i < numRows; i++) { 
+        const row = new Array(i+1); 
+        // elemen pertama selalu 1
+        row[0]=1; 
+        //elemen terakhir selalu 1
+        row[i] = 1; 
+        //hitung elemen tengah (jika ada)
+        for(let j = 1; j < i; j++) { 
+            row[j] = result[i - 1][j - 1] + result[i - 1][j];
+        }
+        // masukan baris ke hasil
+        result.push(row);
+    } 
+    return result;
 };
