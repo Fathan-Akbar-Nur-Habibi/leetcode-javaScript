@@ -3,9 +3,10 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    let result = 0;
-    for (let i = 0; i < nums.length; i++){
-        result = result ^ nums[i];
-    } 
-    return result;    
+    // variable for save result xor
+    let result = 0; 
+    // loop all element
+    for (let i = 0; i < nums.length; i++) { 
+        result = result ^ nums[i]; 
+    } return result;
 };
