@@ -3,16 +3,17 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-    
-    let row = [1];
-    for (let i = 1; i <= rowIndex; i++) {
-        let newRow = [1];
-        for (let j = 1; j < row.length; j++) {
-            newRow.push(row[j - 1] + row[j]);
-        }
-        newRow.push(1);
-        row = newRow;
-    }
+    const row = [1]; 
+    // build row of index 1 to rowIndex
 
+    for (let i =1; i <= rowIndex; i++) { 
+        //add 1 in finally row
+        row.push(1); 
+
+        //update mid element of right to left
+        for (let j= i-1; j>0; j--) { 
+            row[j] = row[j] + row[j-1]; 
+        }
+    }
     return row;
 };
