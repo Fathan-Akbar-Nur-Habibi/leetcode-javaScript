@@ -4,14 +4,16 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
-  let map ={}; 
-  for(let i=0; i<nums.length; i++) { 
-    if(map[nums[i]] !== undefined) { 
-        if (i-map[nums[i]] <= k) { 
-            return true;
+    const map = new Map(); 
+    for (let i=0; i<nums.length; i++) {
+        // jika angka sudah pernah muncul 
+        if(map.has(nums[i])) { 
+            // hitung jarak indeks
+            if(i - map.get(nums[i]) <= k){ 
+                return true;
+            }
         }
-    }
-    map[nums[i]] =i;
-  }  
-  return false; 
+        // update indeks terakhir angka ini
+        map.set(nums[i], i);
+    } return false;
 };
