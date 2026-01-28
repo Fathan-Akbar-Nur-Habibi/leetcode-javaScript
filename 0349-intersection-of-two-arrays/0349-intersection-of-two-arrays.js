@@ -4,13 +4,23 @@
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
-    let set = new Set(nums1); 
-    let result = []; 
-    for (let i = 0; i < nums2.length; i++) { 
-        if(set.has(nums2[i])) { 
-            result.push(nums2[i]); 
-            set.delete(nums2[i]);
-        }
+  // ubah nums1 menjadi set agar : 
+  // -tidak ada duplkat
+  // pencarian O(1)
+  const setNums1 = new Set(nums1) ; 
+
+  // set untuk menyimpan hasil (agar unik)
+  const resultSet = new Set(); 
+
+  // loop nums2
+  for (let num of nums2) { 
+    // jika elemen nums2 ada di nums1
+    if(setNums1.has(num)) { 
+        // masukan ke resultSet
+        resultSet.add(num); 
     }
-    return result;
+  }
+  // ubah set menjadi array dan return
+  return Array.from(resultSet)
+
 };
