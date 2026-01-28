@@ -3,25 +3,30 @@
  * @return {number}
  */
 var thirdMax = function(nums) {
-    let first = - Infinity; 
-    let second  = -Infinity; 
+    // inisialisasi tiga maksimum 
+    let first = -Infinity; 
+    let second = -Infinity; 
     let third = -Infinity; 
 
-    for (let i = 0; i < nums.length; i++) { 
-        let num = nums[i]; 
+    // loop semua angka
+    for (let num of nums) { 
+        // skip jika duplikat
         if (num === first || num === second || num === third) { 
-            continue;
+            continue; 
         }
         if (num > first) { 
             third = second; 
-            second = first;
+            second = first; 
             first = num; 
-        } else if (num > second) { 
+        }
+        // update second & third
+        else if (num > second) { 
             third = second; 
-            second = num;
-        } else if (num > third) { 
-            third = num;
+            second = num; 
+        }
+        else if (num > third) { 
+            third = num; 
         }
     }
-    return third === -Infinity ?first : third; 
+    return third === -Infinity ? first : third; 
 };
